@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
 
   static const primary = Color(0xff42C83C);
+  static const textOnPrimary = Color(0xFFF6F6F6);
 
   // Light theme colors`
   static const backgroundLight = Color(0xffF2F2F2);
