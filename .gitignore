@@ -120,3 +120,5 @@ windows/.idea/
 
 # Other
 .env
+.env*
+memo.md

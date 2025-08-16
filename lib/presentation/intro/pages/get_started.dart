@@ -10,6 +10,7 @@ class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Container(
@@ -32,8 +33,9 @@ class GetStarted extends StatelessWidget {
                 ),
                 Text(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus. Cursus ornare id scelerisque aliquam.',
-                  maxLines: 4,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(fontSize: 17.0),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(),
