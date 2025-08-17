@@ -16,15 +16,15 @@ class UserModel {
     );
   }
 
-  factory UserModel.fromFirebase(User firebaseUser) {
+  factory UserModel.fromFirebase(User firebaseUser, {String? fullName}) {
     return UserModel(
       id: firebaseUser.uid,
-      fullName: firebaseUser.displayName ?? '',
       email: firebaseUser.email ?? '',
+      fullName: fullName ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {'uid': id, 'full_name': fullName, 'email_address': email};
+    return {'name': fullName, 'email': email};
   }
 }

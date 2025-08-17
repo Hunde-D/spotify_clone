@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spotify_clone/core/error/failure.dart';
@@ -50,7 +51,11 @@ class FirebaseAuthDataSourceImpl extends AuthDataSource {
       if (registeredUser == null) {
         return Left(Failure('User registration failed'));
       }
-      UserModel userModel = UserModel.fromFirebase(registeredUser);
+      UserModel userModel = UserModel.fromFirebase(
+        registeredUser,
+        fullName: newUser.fullName,
+      );
+      FirebaseFirestore.instance.collection('Users').add(userModel.toJson());
       return Right(userModel);
     } on FirebaseAuthException catch (e) {
       String errorMessage = '';
