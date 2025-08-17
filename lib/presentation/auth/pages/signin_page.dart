@@ -8,6 +8,9 @@ import 'package:spotify_clone/common/widgets/gradient_separator.dart';
 import 'package:spotify_clone/common/widgets/primary_button.dart';
 import 'package:spotify_clone/common/widgets/social_buttons.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
+import 'package:spotify_clone/data/dto/user_dtos.dart';
+import 'package:spotify_clone/domain/usecases/signin_usecase.dart';
+import 'package:spotify_clone/service_locator.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -17,14 +20,14 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -45,7 +48,10 @@ class _SigninPageState extends State<SigninPage> {
             Column(
               spacing: 12.0,
               children: [
-                Text('Sign In', style: Theme.of(context).textTheme.headlineSmall),
+                Text(
+                  'Sign In',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -112,13 +118,42 @@ class _SigninPageState extends State<SigninPage> {
                     ),
                   ),
                   const SizedBox(height: 12.0),
-                  PrimaryButton(onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Signing up...')),
-                      );
-                    }
-                  }, title: 'Sign In'),
+                  PrimaryButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        var result = await sl<SigninUsecase>().call(
+                          params: SignInReq(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          ),
+                        );
+                        result.fold(
+                          (failure) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Error: ${failure.message}'),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                          },
+                          (user) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Sign in successful!'),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/root',
+                              (route) => false,
+                            );
+                          },
+                        );
+                      }
+                    },
+                    title: 'Sign In',
+                  ),
                 ],
               ),
             ),
@@ -127,7 +162,7 @@ class _SigninPageState extends State<SigninPage> {
               darkColors: [const Color(0xFF5B5B5B), const Color(0xFF252525)],
               text: 'Or',
             ),
-              SocialButtons(),
+            SocialButtons(),
             AuthSwitchText(
               mainText: "Not a member?",
               actionText: "Register Now",

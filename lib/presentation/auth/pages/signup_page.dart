@@ -8,6 +8,9 @@ import 'package:spotify_clone/common/widgets/gradient_separator.dart';
 import 'package:spotify_clone/common/widgets/primary_button.dart';
 import 'package:spotify_clone/common/widgets/social_buttons.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
+import 'package:spotify_clone/data/dto/user_dtos.dart';
+import 'package:spotify_clone/domain/usecases/signup_usecase.dart';
+import 'package:spotify_clone/service_locator.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -17,14 +20,14 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -46,7 +49,10 @@ class _SignupPageState extends State<SignupPage> {
             Column(
               spacing: 12.0,
               children: [
-                Text('Register', style: Theme.of(context).textTheme.headlineSmall),
+                Text(
+                  'Register',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -70,7 +76,7 @@ class _SignupPageState extends State<SignupPage> {
                 spacing: 12.0,
                 children: [
                   CustomTextField(
-                    controller: _nameController,
+                    controller: _fullNameController,
                     hintText: 'Full Name',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -108,11 +114,40 @@ class _SignupPageState extends State<SignupPage> {
                   const SizedBox(height: 12.0),
                   PrimaryButton(onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Signing up...')),
-                      );
-                    }
-                  }, title: 'Create Account'),
+                        var result = await sl<SignupUseCase>().call(
+                          params: CreateUserReq(
+                            fullName: _fullNameController.text.toString(),
+                            email: _emailController.text.toString(),
+                            password: _passwordController.text.toString(),
+                          ),
+                        );
+                        result.fold(
+                          (failure) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Error: ${failure.message}'),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                          },
+                          (user) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Sign up successful!'),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/root',
+                              (route) => false,
+                            );
+                          },
+                        );
+                      }
+                    },
+                    title: 'Create Account',
+                  ),
                 ],
               ),
             ),
