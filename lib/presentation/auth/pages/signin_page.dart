@@ -145,7 +145,7 @@ class _SigninPageState extends State<SigninPage> {
                             );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
-                              '/root',
+                              '/home',
                               (route) => false,
                             );
                           },

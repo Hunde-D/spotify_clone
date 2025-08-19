@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:spotify_clone/common/helpers/is_dark_mode.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, this.title});
+  const CustomAppBar({super.key, this.title, this.leading, this.actions});
 
   final Widget? title;
+  final Widget? leading;
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -14,7 +16,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: title,
-      leading: IconButton(
+      leading:
+          leading ??
+          IconButton(
         onPressed: () => Navigator.pop(context),
         icon: Container(
           padding: const EdgeInsets.all(8.0),
@@ -27,6 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Icon(CupertinoIcons.chevron_back),
         ),
       ),
+      actions: actions,
     );
   }
 }

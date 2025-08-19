@@ -13,7 +13,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.light,
-    ).copyWith(surface: AppColors.surfaceLight),
+    ).copyWith(surface: AppColors.surfaceLight, onPrimary: Color(0xffFBFBFB)),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -36,10 +36,16 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: Color(0xffDADADA),
       ),
+      titleMedium: TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold),
       headlineSmall: TextStyle(
         fontSize: 25.0,
         fontWeight: FontWeight.bold,
         color: AppColors.textLight.withValues(alpha: 0.78),
+      ),
+      bodyLarge: TextStyle(
+        color: AppColors.textLight,
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
       ),
       bodyMedium: TextStyle(
         color: Color(0xff797979),
@@ -54,6 +60,11 @@ class AppTheme {
       labelLarge: TextStyle(
         fontSize: 19.0,
         color: AppColors.textLightSecondary,
+        fontWeight: FontWeight.bold,
+      ),
+      labelMedium: TextStyle(
+        fontSize: 20.0,
+        color: AppColors.tabColorLight,
         fontWeight: FontWeight.bold,
       ),
     ),
@@ -105,7 +116,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.dark,
-    ).copyWith(surface: AppColors.surfaceDark),
+    ).copyWith(surface: AppColors.surfaceDark, onPrimary: Color(0xffFBFBFB)),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -128,10 +139,16 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: Color(0xffDADADA),
       ),
+      titleMedium: TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold),
       headlineSmall: TextStyle(
         fontSize: 25.0,
         fontWeight: FontWeight.bold,
         color: AppColors.textDarkSecondary,
+      ),
+      bodyLarge: TextStyle(
+        color: AppColors.textDark,
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
       ),
       bodyMedium: TextStyle(
         color: Color(0xffA0A0A0),
@@ -146,6 +163,11 @@ class AppTheme {
       labelLarge: TextStyle(
         fontSize: 19.0,
         color: AppColors.textDarkSecondary,
+        fontWeight: FontWeight.bold,
+      ),
+      labelMedium: TextStyle(
+        fontSize: 20.0,
+        color: AppColors.tabColorDark,
         fontWeight: FontWeight.bold,
       ),
     ),

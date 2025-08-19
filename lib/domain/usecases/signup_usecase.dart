@@ -9,7 +9,7 @@ import 'package:spotify_clone/service_locator.dart';
 class SignupUseCase implements UseCase<Either<Failure, UserModel>, CreateUserReq> {
   @override
   Future<Either<Failure, UserModel>> call({CreateUserReq? params}) async {
-    return sl<AuthRepository>().signUpWithEmail(params!);
+    return await sl<AuthRepository>().signUpWithEmail(params!);
   }
 
 }

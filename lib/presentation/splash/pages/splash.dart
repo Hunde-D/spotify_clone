@@ -20,6 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: SvgPicture.asset(
           AppVectors.logo,

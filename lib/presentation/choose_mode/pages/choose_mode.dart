@@ -108,7 +108,8 @@ class ChooseMode extends StatelessWidget {
                 ),
                 const SizedBox(),
                 PrimaryButton(
-                  onPressed: () => Navigator.pushNamed(context, '/auth'),
+                  //Todo: later navigate to "/auth"
+                  onPressed: () => Navigator.pushNamed(context, '/home'),
                   title: 'Continue',
                   height: 92,
                 ),

@@ -139,7 +139,7 @@ class _SignupPageState extends State<SignupPage> {
                             );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
-                              '/root',
+                              '/home',
                               (route) => false,
                             );
                           },

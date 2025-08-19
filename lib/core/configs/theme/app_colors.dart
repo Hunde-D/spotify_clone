@@ -13,16 +13,18 @@ class AppColors {
   static const textLightSecondary = Color(0xFF383838);
   static const accentLight = Color(0xffBEBEBE);
   static const iconLight = Color(0xff414141);
+  static const tabColorLight = Color(0xffBEBEBE);
 
 
   // Dark theme colors
-  static const backgroundDark = Color(0xff0D0C0C);
-  static const surfaceDark = Color(0xff1C1B1B);
+  static const backgroundDark = Color(0xff1C1B1B);
+  static const surfaceDark = Color(0xff0D0C0C);
   static const textDark = Color(0xFFE1E1E1);
   static const textDarkSecondary = backgroundLight;
   static const accentDark = Color(0xff616161);
   static const iconDark = Color(0xffDDDDDD);
   static const r = Color(0xffA7A7A7);
+  static const tabColorDark = Color(0xff616161);
 
   // Common colors
   static const grey = Color(0xffBEBEBE);

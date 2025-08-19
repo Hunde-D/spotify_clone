@@ -7,7 +7,7 @@ import 'package:spotify_clone/presentation/auth/pages/signup_page.dart';
 import 'package:spotify_clone/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotify_clone/presentation/choose_mode/pages/choose_mode.dart';
 import 'package:spotify_clone/presentation/intro/pages/get_started.dart';
-import 'package:spotify_clone/presentation/root/pages/root.dart';
+import 'package:spotify_clone/presentation/home/pages/home_page.dart';
 import 'package:spotify_clone/presentation/splash/pages/splash.dart';
 
 class App extends StatelessWidget {
@@ -33,7 +33,7 @@ class App extends StatelessWidget {
               '/auth': (context) => const AuthPage(),
               '/auth/register': (context) => const SignupPage(),
               '/auth/login': (context) => const SigninPage(),
-              '/root': (context) => const RootPage(),
+              '/home': (context) => const HomePage(),
             },
           );
         },
