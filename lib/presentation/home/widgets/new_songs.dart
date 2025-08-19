@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify_clone/common/helpers/is_dark_mode.dart';
 import 'package:spotify_clone/common/widgets/song_card.dart';
 import 'package:spotify_clone/presentation/home/bloc/new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/home/bloc/new_songs_state.dart';

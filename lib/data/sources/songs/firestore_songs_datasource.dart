@@ -13,7 +13,7 @@ class FirestoreSongDatasource implements SongDataSource {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('Songs').orderBy('addedDate', descending: true).limit(3).get();
       final songs = snapshot.docs
-          .map((doc) => SongModel.fromJson(doc.data()))
+          .map((doc) => SongModel.fromFirestore(doc.data(), id: doc.id))
           .map((model) => model.toEntity())
           .toList();
       return Right(songs);
@@ -30,7 +30,7 @@ class FirestoreSongDatasource implements SongDataSource {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('Songs').orderBy('addedDate', descending: true).limit(3).get();
       final songs = snapshot.docs
-          .map((doc) => SongModel.fromJson(doc.data()))
+          .map((doc) => SongModel.fromFirestore(doc.data(), id: doc.id))
           .map((model) => model.toEntity())
           .toList();
       return Right(songs);

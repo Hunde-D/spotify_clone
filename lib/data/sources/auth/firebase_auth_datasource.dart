@@ -54,6 +54,7 @@ class FirebaseAuthDataSourceImpl extends AuthDataSource {
       UserModel userModel = UserModel.fromFirebase(
         registeredUser,
         fullName: newUser.fullName,
+        fcmToken: '',
       );
       FirebaseFirestore.instance.collection('Users').add(userModel.toJson());
       return Right(userModel);

@@ -5,6 +5,7 @@ import 'package:spotify_clone/domain/entities/song_entity.dart';
 extension SongModelMapper on SongModel {
   SongEntity toEntity() {
     return SongEntity(
+      id: id,
       title: title,
       artist: artist,
       album: album,
@@ -17,6 +18,7 @@ extension SongModelMapper on SongModel {
 
     Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'title': title,
       'artist': artist,
       'album': album,
@@ -31,6 +33,7 @@ extension SongModelMapper on SongModel {
 extension SongEntityMapper on SongEntity {
   SongModel toModel() {
     return SongModel(
+      id: id,
       title: title,
       artist: artist,
       album: album,

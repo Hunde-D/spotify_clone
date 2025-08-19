@@ -2,7 +2,8 @@ import 'package:spotify_clone/data/models/user_model.dart';
 import 'package:spotify_clone/domain/entities/user_entity.dart';
 
 extension UserModelMapper on UserModel {
-  UserEntity toEntity() => UserEntity(id: id, fullName: fullName, email: email);
+  UserEntity toEntity() =>
+      UserEntity(id: id, fullName: fullName, email: email, fcmToken: fcmToken);
 }
 
 // extension UserEntityMapper on UserEntity {

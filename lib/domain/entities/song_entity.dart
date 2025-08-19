@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SongEntity {
+  final String id;
   final String title;
   final String artist;
   final String album;
@@ -10,6 +11,7 @@ class SongEntity {
   final Timestamp addedDate;
 
   SongEntity({
+    required this.id,
     required this.title,
     required this.artist,
     required this.album,
