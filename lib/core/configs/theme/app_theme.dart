@@ -13,7 +13,11 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.light,
-    ).copyWith(surface: AppColors.surfaceLight, onPrimary: Color(0xffFBFBFB)),
+        ).copyWith(
+          primary: AppColors.primary,
+          surface: AppColors.surfaceLight,
+          onPrimary: Color(0xffFBFBFB),
+        ),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -37,6 +41,11 @@ class AppTheme {
         color: Color(0xffDADADA),
       ),
       titleMedium: TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold),
+      titleSmall: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textLight,
+      ),
       headlineSmall: TextStyle(
         fontSize: 25.0,
         fontWeight: FontWeight.bold,
@@ -116,7 +125,11 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.dark,
-    ).copyWith(surface: AppColors.surfaceDark, onPrimary: Color(0xffFBFBFB)),
+        ).copyWith(
+          primary: AppColors.primary,
+          surface: AppColors.surfaceDark,
+          onPrimary: Color(0xffFBFBFB),
+        ),
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -140,6 +153,11 @@ class AppTheme {
         color: Color(0xffDADADA),
       ),
       titleMedium: TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold),
+      titleSmall: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+        color: AppColors.textDark,
+      ),
       headlineSmall: TextStyle(
         fontSize: 25.0,
         fontWeight: FontWeight.bold,

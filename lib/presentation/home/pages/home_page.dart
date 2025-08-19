@@ -5,6 +5,7 @@ import 'package:spotify_clone/common/widgets/custom_app_bar.dart';
 import 'package:spotify_clone/core/configs/assets/app_images.dart';
 import 'package:spotify_clone/core/configs/assets/app_vectors.dart';
 import 'package:spotify_clone/presentation/home/widgets/new_songs.dart';
+import 'package:spotify_clone/presentation/home/widgets/recent_songs.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 16.0,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -117,7 +118,7 @@ class HomePage extends StatelessWidget {
               splashFactory: NoSplash.splashFactory,
               labelPadding: const EdgeInsets.symmetric(horizontal: 20),
               overlayColor: WidgetStateProperty.all(Colors.transparent),
-              padding: const EdgeInsets.fromLTRB(12, 20, 0, 20),
+              padding: const EdgeInsets.fromLTRB(12, 12, 0, 8),
               labelColor: context.isDarkMode ? Color(0xffDBDBDB) : Colors.black,
               unselectedLabelColor: Theme.of(
                 context,
@@ -143,16 +144,40 @@ class HomePage extends StatelessWidget {
               dividerColor: Colors.transparent,
             ),
             SizedBox(
-              height: 300,
+              height: 240,
               child: TabBarView(
-                children:[
+                children: [
                   const NewSongs(),
-                Center(child: Text('Page 2')),
-                Center(child: Text('Page 3')),
-                Center(child: Text('Page 4')),
-              ],
+                  Center(child: Text('Page 2')),
+                  Center(child: Text('Page 3')),
+                  Center(child: Text('Page 4')),
+                ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Recent Songs',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    'See all',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(child: RecentSongs()),
           ],
         ),
       ),
